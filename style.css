@@ -1,0 +1,38 @@
+body {
+    text-align: center;
+}
+
+.title {
+    margin: 40px;
+}
+
+.container {
+    margin: 0 auto;
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
+    width: 20vw;
+    height: 20vw;
+}
+
+.box {
+    height: 100%;
+    width: 100%;
+    border: 1px solid black;
+}
+
+#playerTurn {
+    margin: 40px;
+}
+
+#reset {
+    padding: 10px;
+}
+
+.p1 {
+    background-color: blue;
+}
+
+.p2 {
+    background-color: red;
+}
