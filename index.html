@@ -1,32 +1,44 @@
 <!DOCTYPE html>
-    <head>
-        <title>
-            Tic Tac Toe
-        </title>
-        <link rel="stylesheet" href="style.css">
-    </head>
+<head>
+    <title>
+        Tic Tac Toe
+    </title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible&display=swap" rel="stylesheet">
+</head>
 
-    <body>
+<body>
 
-        <h1 class="title">Tic Tac Toe</h1>
+    <h1 class="title">Tic Tac Toe</h1>
 
-        <div class="container">
-            <div class="box" id="0"></div>
-            <div class="box" id="1"></div>
-            <div class="box" id="2"></div>
-            <div class="box" id="3"></div>
-            <div class="box" id="4"></div>
-            <div class="box" id="5"></div>
-            <div class="box" id="6"></div>
-            <div class="box" id="7"></div>
-            <div class="box" id="8"></div>
+    <div class="container">
+        <div class="box" id="0"></div>
+        <div class="box" id="1"></div>
+        <div class="box" id="2"></div>
+        <div class="box" id="3"></div>
+        <div class="box" id="4"></div>
+        <div class="box" id="5"></div>
+        <div class="box" id="6"></div>
+        <div class="box" id="7"></div>
+        <div class="box" id="8"></div>
+    </div>
+
+    <div id="playerTurn">Placeholder</div>
+
+    <button id="reset">Reset</button>
+
+    <div id="gameOver" class="modal">
+
+        <div class="modal-content">
+            <p id="outcome"></p>
+            <button id="replay">Play again?</button>
         </div>
 
-        <div id="playerTurn">Placeholder</div>
+    </div>
 
-        <button id="reset">Reset</button>
-
-        <script src="script.js"></script>
-    </body>
+    <script src="script.js"></script>
+</body>
 
 </html>

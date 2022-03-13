@@ -1,5 +1,26 @@
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 30vw;
+}
+
 body {
     text-align: center;
+    font-family: 'Atkinson Hyperlegible', sans-serif;
+    background-color: #ffeceb;
 }
 
 .title {
@@ -11,6 +32,9 @@ body {
     display: grid;
     grid-template-rows: 1fr 1fr 1fr;
     grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 1px;
+    background-color: black;
+    border: 1px solid black;
     width: 20vw;
     height: 20vw;
 }
@@ -18,15 +42,16 @@ body {
 .box {
     height: 100%;
     width: 100%;
-    border: 1px solid black;
+    background-color: white;
 }
 
 #playerTurn {
     margin: 40px;
 }
 
-#reset {
+#reset, #replay {
     padding: 10px;
+    font-family: 'Atkinson Hyperlegible', sans-serif;
 }
 
 .p1 {

@@ -1,11 +1,18 @@
-console.log("loaded");
 let turn = "Player 1";
 let boxStates = [];
-
 let boxes = document.querySelectorAll(".box");
+let gameOver = document.querySelector("#gameOver");
+let outcome = document.querySelector("#outcome");
+let playerTurn = document.querySelector("#playerTurn");
 
+// adds reset functionality
 document.querySelector("#reset").addEventListener("click", resetGame);
+document.querySelector("#replay").addEventListener("click", () => {
+    resetGame();
+    gameOver.style.display = "none";
+});
 
+// adds event listeners to all boxes
 for (let i = 0; i < boxes.length; i++) {
     boxStates[i] = 0;
     boxes[i].addEventListener("click", () => {
@@ -13,34 +20,65 @@ for (let i = 0; i < boxes.length; i++) {
     })
 }
 
+function displayTurn() {
+    playerTurn.innerHTML = `It is ${turn}'s turn`;
+    if (turn === "Player 1")
+        playerTurn.style.color = "blue";
+    else
+        playerTurn.style.color = "red";
+}
+displayTurn();
+
+// executes a turn when player clicks a box
 function selectBox(box) {
 
-    if (turn === "Player 1") {
-        if (boxStates[box.id] === 0) {
+    // only execute if the box hasn't been picked yet
+    if (boxStates[box.id] === 0) {
+        if (turn === "Player 1") {
             boxStates[box.id] = 1;
             box.classList.add("p1");
             turn = "Player 2";
-            if (checkWinner() !== undefined)
-                console.log(`Player ${checkWinner()} wins!`);
         }
-    }
-    else {
-        if (boxStates[box.id] === 0) {
+        else {
             boxStates[box.id] = 2;
             box.classList.add("p2");
             turn = "Player 1";
-            if (checkWinner() !== undefined)
-                console.log(`Player ${checkWinner()} wins!`);
         }
+        displayTurn();
+    }
+
+    if (checkWinner() !== undefined) {
+        outcome.innerHTML = (`Player ${checkWinner()} wins!`);
+        gameOver.style.display = "block";
+    }
+    if (emptyBox() === false) {
+        outcome.innerHTML = (`Tie game!`);
+        gameOver.style.display = "block";
     }
 }
 
+// resets the game state
 function resetGame() {
     for (let i = 0; i < boxes.length; i++) {
         boxStates[i] = 0;
         boxes[i].classList.remove("p1");
         boxes[i].classList.remove("p2");
     }
+    turn = "Player 1";
+    displayTurn();
+}
+
+// checks to see if there are any empty boxes left
+function emptyBox() {
+    
+    let empty = false;
+
+    // check every box, if there's an empty one, set empty box to true
+    for (let i = 0; i < boxStates.length; i++) {
+        if (boxStates[i] === 0)
+            empty = true;
+    }
+    return empty;
 }
 
 function checkWinner() {
@@ -85,7 +123,6 @@ function checkBoxes(arr) {
 }
 
 /*
-
 to do:
 - finish reading instructions
 - wireframe divs
@@ -104,8 +141,4 @@ to do:
     |6 7 8|
 
     - 0 means nobody has selected yet, 1 means player 1 has picked it, 2 means player 2 has picked it
-
-- make function to check if there's a tie
-- add UI element to display winner or tie outcome
-
  */
