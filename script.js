@@ -1,3 +1,4 @@
+// initialize global variables
 let turn = "Player 1";
 let boxStates = [];
 let boxes = document.querySelectorAll(".box");
@@ -20,7 +21,9 @@ for (let i = 0; i < boxes.length; i++) {
     })
 }
 
+// alters playerTurn div on the DOM
 function displayTurn() {
+    
     playerTurn.innerHTML = `It is ${turn}'s turn`;
     if (turn === "Player 1")
         playerTurn.style.color = "blue";
@@ -47,18 +50,19 @@ function selectBox(box) {
         displayTurn();
     }
 
-    if (checkWinner() !== undefined) {
-        outcome.innerHTML = (`Player ${checkWinner()} wins!`);
-        gameOver.style.display = "block";
-    }
     if (emptyBox() === false) {
         outcome.innerHTML = (`Tie game!`);
+        gameOver.style.display = "block";
+    }
+    if (checkWinner() !== undefined) {
+        outcome.innerHTML = (`Player ${checkWinner()} wins!`);
         gameOver.style.display = "block";
     }
 }
 
 // resets the game state
 function resetGame() {
+    
     for (let i = 0; i < boxes.length; i++) {
         boxStates[i] = 0;
         boxes[i].classList.remove("p1");
@@ -72,8 +76,6 @@ function resetGame() {
 function emptyBox() {
     
     let empty = false;
-
-    // check every box, if there's an empty one, set empty box to true
     for (let i = 0; i < boxStates.length; i++) {
         if (boxStates[i] === 0)
             empty = true;
@@ -81,6 +83,7 @@ function emptyBox() {
     return empty;
 }
 
+// checks to see if a player has won, returns winner
 function checkWinner() {
 
     let winStates = [
@@ -99,20 +102,9 @@ function checkWinner() {
         if (winner !== undefined)
             return winner;
     }
-
-    // rows
-    // if a player has 0, 1, 2; 3, 4, 5; or 6, 7, 8 they win
-
-    // columns
-    // if a player has 0, 3, 6; 1, 4, 7; or 2, 5, 8 they win
-
-    // diagonals
-    // if a player has 0, 4, 8 or 2, 4, 6 they win
-
-    // if boxStates matches a winning sequence for either player, console log the winner
-    // later add a modal with a reset button
 }
 
+// checks to see if three boxes belong to the same player
 function checkBoxes(arr) {
     let first = boxStates[arr[0]]
     let second = boxStates[arr[1]]
@@ -122,23 +114,3 @@ function checkBoxes(arr) {
         return first;
 }
 
-/*
-to do:
-- finish reading instructions
-- wireframe divs
-    - title at top of page
-    - centered 3x3 w css grid, give each an ID to store in array later
-    - div to say whose turn it is
-    - reset button at the bottom
-- build basic html without style
-- write script
-    - event listeners on each div to change colors
-    - part II: store an array of arrays representing winning states
-    - represent with array of 9 elements like so
-
-    |0 1 2|
-    |3 4 5|
-    |6 7 8|
-
-    - 0 means nobody has selected yet, 1 means player 1 has picked it, 2 means player 2 has picked it
- */
